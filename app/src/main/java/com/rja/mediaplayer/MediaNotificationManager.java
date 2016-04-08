@@ -46,8 +46,6 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
     private final NotificationManagerCompat mNotificationManager;
 
-    private Intent mProvidedIntent;
-
     private final PendingIntent mPauseIntent;
     private final PendingIntent mPlayIntent;
     private final PendingIntent mPreviousIntent;
@@ -59,13 +57,11 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
     private boolean mStarted = false;
 
-    public MediaNotificationManager(MediaPlayerService service, Intent pendingIntent) throws RemoteException {
+    public MediaNotificationManager(MediaPlayerService service) throws RemoteException {
         mService = service;
-        mProvidedIntent = pendingIntent;
         updateSessionToken();
 
         mNotificationColor = ContextCompat.getColor(mService.getApplicationContext(), android.R.color.background_dark);
-
         mNotificationManager = NotificationManagerCompat.from(service);
 
         String pkg = mService.getPackageName();
@@ -187,13 +183,13 @@ public class MediaNotificationManager extends BroadcastReceiver {
         if(mPauseIntent != null) {
 //        Intent openUI = new Intent(mService, HotMainActivity.class);
 
-            mProvidedIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//            mProvidedIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 //        openUI.putExtra(MusicPlayerActivity.EXTRA_START_FULLSCREEN, true);
 //        if (description != null) {
 //            openUI.putExtra(MusicPlayerActivity.EXTRA_CURRENT_MEDIA_DESCRIPTION, description);
 //        }
-            return PendingIntent.getActivity(mService, REQUEST_CODE, mProvidedIntent,
-                    PendingIntent.FLAG_CANCEL_CURRENT);
+//            return PendingIntent.getActivity(mService, REQUEST_CODE, mProvidedIntent,
+//                    PendingIntent.FLAG_CANCEL_CURRENT);
         }
         return null;
     }

@@ -54,7 +54,7 @@ public class MediaPlayerService extends MediaBrowserServiceCompat implements Pla
 
         try {
             //TODO figure out a way to set the intent manually...
-            mMediaNotificationManager = new MediaNotificationManager(this, null);
+            mMediaNotificationManager = new MediaNotificationManager(this);
         } catch(RemoteException e) {
             e.printStackTrace();
         }
